@@ -39,19 +39,7 @@ body {
     min-height: 100vh;
 }
 
-/* Rain & CRT Overlay */
-body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background:
-        repeating-linear-gradient(rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 2px, rgba(0, 0, 0, 0.1) 2px, rgba(0, 0, 0, 0.1) 4px);
-    pointer-events: none;
-    z-index: 9999;
-}
+/* CRT Overlay completely removed by user request */
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
@@ -599,15 +587,24 @@ h4 {
         font-size: 0.8rem;
     }
 
+    /* Better Boss layout for mobile */
+    .boss-showcase {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .boss-info {
+        padding: 2rem;
+    }
+
     .boss-art {
         border-left: none !important;
         border-top: 2px solid var(--blood-red);
-        min-height: 300px;
+        min-height: 250px;
+        order: -1; /* Puts image above text on mobile */
     }
 
-    body::before {
-        width: 100%;
-        background:
-            repeating-linear-gradient(rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 2px, rgba(0, 0, 0, 0.1) 2px, rgba(0, 0, 0, 0.1) 4px);
+    .container {
+        padding: 4rem 1rem;
     }
 }
