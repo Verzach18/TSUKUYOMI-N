@@ -23,6 +23,11 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
+            
+            // Close mobile menu if open
+            const menuToggle = document.getElementById('menu-toggle');
+            if (menuToggle) menuToggle.checked = false;
+
             if (targetId === '#') return;
 
             const targetElement = document.querySelector(targetId);
@@ -36,6 +41,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Close mobile menu on external link clicks too
+    document.querySelectorAll('.nav-external').forEach(link => {
+        link.addEventListener('click', () => {
+            const menuToggle = document.getElementById('menu-toggle');
+            if (menuToggle) menuToggle.checked = false;
+        });
+    });
+
     // Floating Parallax on Hero
     const heroBg = document.querySelector('.hero-full');
     if (heroBg) {
@@ -43,6 +56,18 @@ document.addEventListener('DOMContentLoaded', () => {
             const scrolled = window.scrollY;
             if (scrolled < window.innerHeight) {
                 heroBg.style.backgroundPosition = `center ${scrolled * 0.4}px`;
+            }
+        });
+    }
+
+    // Navbar scroll effect
+    const mainNav = document.querySelector('.main-nav');
+    if (mainNav) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                mainNav.classList.add('scrolled');
+            } else {
+                mainNav.classList.remove('scrolled');
             }
         });
     }
